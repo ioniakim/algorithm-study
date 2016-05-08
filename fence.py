@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 '''
 너비가 같은 N개의 나무 판자를 붙여 세운 울타리가 있고 각 판자의 높이가 주어질 때 잘라낼 수 있는
 직사각형의 최대 크기를 계산하는 프로그램. 판자의 너비는 모두 1이라고 가정
@@ -9,7 +12,23 @@
 '''
 
 
+def brute_force2(fence):
+  """책 예제
+  """
+  ret = 0
+  N = len(fence)
+  for left, h in enumerate(fence):
+    min_height = h
+    for right in range(left, N):
+      min_height = min(min_height, fence[right])
+      ret = max(ret, (right - left + 1) * min_height)
+
+  return ret
+
+
 def brute_force(fence):
+  """내가 만든 로직
+  """
   max_rectangle = -1
 
   for i, h in enumerate(fence):
@@ -35,7 +54,8 @@ def main():
     for i in range(C):
       N = int(f.readline())
       fence = [int(h) for h in f.readline().split()]
-      print(brute_force(fence))
+      print('brute force 1:', brute_force(fence))
+      print('brute force 2:', brute_force2(fence))
 
 if __name__ == '__main__':
  main()
