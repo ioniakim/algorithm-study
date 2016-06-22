@@ -11,9 +11,35 @@
 높이는 모두 10,000이하 자연수
 '''
 
+def divide_conquer(fence, left, right):
+  max_rec = 0
+  c = right - left
+  if c == 1:
+    return fence[left]
+
+  mid = left + int(c / 2)
+  left_max = divide_conquer(fence, left, mid)
+  right_max = divide_conquer(fence, mid, right)
+
+  min_height = min(fence[mid-1], fence[mid])
+
+  lh = mid
+  for i in range(mid, left - 1, -1):
+    if fence[i] < min_height:
+      break
+    lh = i
+
+  rh = mid + 2
+  for i in range(mid+1, right):
+    if fence[i] < min_height:
+      break
+    rh = i
+
+  return max(left_max, right_max, (rh - lh) * min_height)
 
 def brute_force2(fence):
   """책 예제
+  left부터 min_height를 구하면서 최대 직사각형을 찾는 로직
   """
   ret = 0
   N = len(fence)
@@ -25,9 +51,9 @@ def brute_force2(fence):
 
   return ret
 
-
 def brute_force(fence):
   """내가 만든 로직
+  left부터 각 판자의 크기에서 가장 큰 직사각형을 찾는 로직
   """
   max_rectangle = -1
 
@@ -56,6 +82,8 @@ def main():
       fence = [int(h) for h in f.readline().split()]
       print('brute force 1:', brute_force(fence))
       print('brute force 2:', brute_force2(fence))
+      max_rec = divide_conquer(fence, 0, len(fence))
+      print('divide and conquer:', max_rec)
 
 if __name__ == '__main__':
  main()
