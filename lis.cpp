@@ -1,3 +1,8 @@
+/**
+ * Longest Increasing Subsequence Algorithm in C++
+ *
+ */
+
 #include <iostream>
 #include <algorithm>
 
@@ -30,5 +35,5 @@ int main(){
     S[4] = 1;
 
     memset(cache, -1, sizeof(cache));
-    cout<< lis(-1) << endl;
+    cout<< lis(-1)-1 << endl;
 }

@@ -24,29 +24,35 @@ class Lis(object):
 
 
 class LisDP(object):
+    """
+    Dynamic programming version of LIS
+    """
     def __init__(self, seq):
         self._cache = [-1 for i in range(len(seq)+1)]
         self._seq = seq
 
     def solve(self):
-
-        return self._solve(-1)
+        """
+        for loop 대신 -1 index부터 시작함으로써 호출을 단순화 할 수 있다.
+        index -1인 가상의 값부터 시작하기 때문에 최종값에서 -1을 해야 한다.
+        """
+        return self._solve(-1) - 1
         # m = 1
         # for i in range(len(self._seq)):
         #     m = max(m, self._solve(i))
         # return m
 
-    def _solve(self, p):
-        start = p + 1
-        if self._cache[start] != -1:
-            return self._cache[start]
+    def _solve(self, start):
+        i = start + 1
+        if self._cache[i] != -1:
+            return self._cache[i]
 
-        self._cache[start] = 1
+        self._cache[i] = 1
         for nexti in range(start+1, len(self._seq)):
-            if p == -1 or self._seq[start] < self._seq[nexti]:
-                self._cache[start] = max(self._cache[start], self._solve(nexti) + 1)
+            if start == -1 or self._seq[start] < self._seq[nexti]:
+                self._cache[i] = max(self._cache[i], self._solve(nexti) + 1)
 
-        return self._cache[start]
+        return self._cache[i]
 
 seq = [5, 2, 3, 8, 4, 9]
 
