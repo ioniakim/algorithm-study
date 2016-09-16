@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+"""ALGOSPOT Packing
+"""
 from collections import namedtuple
 
 class Packing(object):
