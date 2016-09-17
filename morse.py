@@ -37,10 +37,10 @@ def morse(n, m, s):
         morse(n, m-1, s + 'o')
 
 
-
 def main():
     m = Morse()
     m.morse(100, 100, 10000)
+
 
 if __name__ == '__main__':
     main()
