@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """ALGOSPOT Packing
+<<<<<<< HEAD
     My solution. It needs to be compared with packing2.py which is defined in the book.
+=======
+>>>>>>> origin/restore
 """
 from collections import namedtuple
 
